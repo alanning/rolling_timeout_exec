@@ -1,0 +1,23 @@
+{
+  "name" : "rolling_timeout_exec",
+  "version" : "0.0.1",
+  "description" : "Wrapper around exec that provides rolling timeout based on stdout/stderr activity",
+  "main" : "./index.js",
+  "dependencies" : {
+  },
+  "devDependencies" : {
+    "tap" : "~0.4.8"
+  },
+  "scripts" : {
+    "test" : "tap ./test/*.js"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/alanning/rolling_timeout_exec.git"
+  },
+  "files" : ["README.md","index.js","History.md"],
+  "keywords" : ["rolling timeout","timeout","child process","exec"],
+  "bugs" : "https://github.com/alanning/rolling_timeout_exec/issues",
+  "author" : "Adrian Lanning",
+  "license" : "MIT"
+}

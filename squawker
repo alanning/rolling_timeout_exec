@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+var TIME_TO_RUN,
+    SQUAWK_INTERVAL,
+    SLOW_RATE,
+    RUN_PADDING = 100,
+    timeoutId,
+    usage,
+    arg1 = process.argv[2],
+    arg2 = process.argv[3],
+    arg3 = process.argv[4]
+    
+usage = './squawker <TIME_TO_RUN> <SQUAWK_INTERVAL> <SLOW_RATE>\n' +
+        '\n' +
+        'Options:\n' +
+        '  TIME_TO_RUN - milliseconds to squawk. Default = 5000\n' +
+        '  SQUAWK_INTERVAL - how often to squawk in milliseconds. Default = 1000\n' + 
+        '  SLOW_RATE - milliseconds to increase SQUAWK_INTERVAL by after each squawk. Default = 0\n'
+
+if (arg1 === '-h' ||
+    arg1 === '-?' ||
+    arg1 === '/?' ||
+    arg1 === '--help') {
+  console.log('Usage:', usage)
+  process.exit()
+}
+
+function parseNumArg(arg, defaultVal) {
+  var value;
+
+  if (!arg) return defaultVal;
+
+  try {
+    value = parseInt(arg, 10)
+  }
+  catch (ex) {
+    value = defaultVal 
+  }
+
+  return value
+}
+
+
+TIME_TO_RUN = parseNumArg(arg1, 5000) + RUN_PADDING
+SQUAWK_INTERVAL = parseNumArg(arg2, 1000)
+SLOW_RATE = parseNumArg(arg3, 0)
+
+function squawk () {
+  console.log('squawk!')
+  SQUAWK_INTERVAL = SQUAWK_INTERVAL + SLOW_RATE
+
+  timeoutId = setTimeout(squawk, SQUAWK_INTERVAL)
+}
+
+timeoutId = setTimeout(squawk, SQUAWK_INTERVAL)
+
+setTimeout(function () {
+  clearTimeout(timeoutId)
+  timeoutId = null
+  process.exit()
+}, TIME_TO_RUN)
