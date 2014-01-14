@@ -1,7 +1,7 @@
 {
   "name" : "rolling_timeout_exec",
   "version" : "0.0.1",
-  "description" : "Wrapper around exec that provides rolling timeout based on stdout/stderr activity",
+  "description" : "Wrapper around child_process.exec that provides a rolling timeout based on stdout/stderr activity.",
   "main" : "./index.js",
   "dependencies" : {
   },
