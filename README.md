@@ -1,7 +1,7 @@
 rolling_timeout_exec
 ====================
 
-Wrapper around `exec` that provides rolling timeout based on stdout/stderr activity
+Wrapper around `child_process.exec` that provides a rolling timeout based on stdout/stderr activity.
 
 ### Goal
 
@@ -51,4 +51,16 @@ child = exec(command, options, function (err, stdout, stderr) {
 child.on('rolling-timeout', function () {
   timeout = true;
 })
+```
+
+### Test
+
+Steps to run test suite:
+
+```sh
+$ cd ~/tmp
+$ git clone https://github.com/alanning/rolling_timeout_exec.git
+$ cd rolling_timeout_exec
+$ npm install
+$ npm test
 ```
